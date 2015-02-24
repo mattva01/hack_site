@@ -12,4 +12,4 @@ web:
        CODEFORNOVA_ADMIN_USERNAME: 
        CODEFORNOVA_ADMIN_PASSWORD: 
 mongodb:
-   image: mongo:0.11
+   image: mongo:2.6
