@@ -47,13 +47,21 @@ var Project = new mongoose.Schema({
   help_text: String,
   github_url: String,
   production_url: String,
-  demo_url: String
+  demo_url: String,
+  tags: [String]
 })
 
 var Resource = new mongoose.Schema({
   name: String,
   description: String,
   link: String,
+})
+
+var Member = new mongoose.Schema({
+  name: String,
+  codename: String,
+  description: String,
+  tags: [String],
 })
 
 //Models
@@ -179,7 +187,8 @@ app.post( '/api/projects', requires_auth, function( request, response ) {
     help_text: request.body.help_text,
     github_url: request.body.github_url,
     demo_url:request.body.demo_url,
-    production_url:request.body.production_url
+    production_url:request.body.production_url,
+    tags:request.body.tags
   });
   project.save( function( err ) {
     if( !err ) {

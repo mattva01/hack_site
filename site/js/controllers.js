@@ -14,8 +14,14 @@ var hackControllers = angular.module('hackControllers', ["hackServices"]).contro
 
 }).controller('ProjectCtrl', function ($scope, $http, Project) {
   $scope.projects = Project.query();
+  var seperateTags = function(tagObjarray){
+    return tagObjarray.map(function(tag){
+      return tag['text'];
+    });
+  }
   $scope.addProject = function () {
-  	var newProject = new Project({name: $scope.newproject.name, description: $scope.newproject.description, github_url: $scope.newproject.github_url, production_url: $scope.newproject.production_url, demo_url: $scope.newproject.demo_url })
+
+  	var newProject = new Project({name: $scope.newproject.name, description: $scope.newproject.description, github_url: $scope.newproject.github_url, production_url: $scope.newproject.production_url, demo_url: $scope.newproject.demo_url, help_text: $scope.newproject.help_text, tags: seperateTags($scope.newproject.tags) })
   	newProject.$save();
   	$scope.projects.push(newProject)
   	

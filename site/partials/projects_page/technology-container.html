@@ -1,43 +1,18 @@
     <div class="row zero-marg lt-rt-neg-marg technologies-container">
-            <div class="col-sm-12 lt-rt-col-pad">
-              <div class="project-general-text ">
-                {{project.description}}
-              </div>
+      <div class="col-sm-12 lt-rt-col-pad">
+        <div class="project-general-text ">
+          {{project.description}}
+        </div>
+      </div>
+      <div class="col-sm-12 lt-rt-col-pad" style="margin-top:16px;">
+        <div class="row zero-marg">
+          <div >
+            <div class="col-xs-3 col-sm-4 zero-pad" ng-repeat="tag in project.tags">
+              <div class="technology-container">
+                {{tag}}
+              </div>      
             </div>
-            <div class="col-sm-12 lt-rt-col-pad" style="margin-top:16px;">
-              <div class="row zero-marg">
-                <div >
-                  <div class="col-xs-3 col-sm-4 zero-pad">
-                    <div class="technology-container">
-                      Ruby
-                    </div>      
-                  </div>
-                  <div class="col-xs-3 col-sm-4 zero-pad">
-                    <div class="technology-container">
-                      JavaScript
-                    </div> 
-                  </div>
-                  <div class="col-xs-3 col-sm-4 zero-pad">
-                    <div class="technology-container">
-                      HTML
-                    </div> 
-                  </div>
-                  <div class="col-xs-3 col-sm-4 zero-pad">
-                    <div class="technology-container">
-                      Java
-                    </div> 
-                  </div>
-                  <div class="col-xs-3 col-sm-4 zero-pad">
-                    <div class="technology-container">
-                      NodeJS
-                    </div> 
-                  </div>
-                  <div class="col-xs-3 col-sm-4 zero-pad">
-                    <div class="technology-container">
-                      Git
-                    </div> 
-                  </div>
-                </div>          
-              </div>        
-            </div>
-          </div>   
+          </div>          
+        </div>        
+      </div>
+    </div>   

@@ -1,5 +1,6 @@
 var hackApp = angular.module('hackApp', [
   'ui.router',
+  'ngTagsInput',
   'hackControllers',
   'hackServices',
   'hackDirectives'

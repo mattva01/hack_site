@@ -13,11 +13,15 @@
               </div>
             </div>
             <div class="col-xs-12 zero-pad wanna-help-container">
-              <div class="wanna-help-link">
-                  <img src="images/github02.png" height=70px; width=70px;>
+              <div ng-show="{{project.github_url}}" class="wanna-help-link">
+                  <a href="{{project.github_url}}">
+                    <img src="/static/images/github02.png" height=70px; width=70px; />
+                  </a>
               </div> 
-              <div class="wanna-help-link">
-                  <img src="images/project-play.png" height=70px; width=70px;>
+              <div ng-show="{{project.production_url}}"class="wanna-help-link">
+                  <a href="{{project.production_url}}">
+                    <img src="/static/images/project-play.png" height=70px; width=70px;>
+                  </a>
               </div>
             </div>
           </div>

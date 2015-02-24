@@ -27,6 +27,14 @@ Demo Site URL</label> <input id="projectDemoField" class="form-control" type="ur
 <label for="projectProductionField">
 Production Site URL</label> <input id="projectProductionField" class="form-control" type="url" data-ng-model="newproject.production_url" placeholder="Production Site URL"/>
 </div>
+<div class="form-group">
+<label for="projectHelpTextField">Help Text</label> <textarea class="form-control" id="projectHelpTextField" data-ng-model="newproject.help_text" placeholder="Replace this with some current goals"/>
+</div>
+<div class="form-group">
+<label for="projectHelpTextField">Help Text</label> 
+<tags-input ng-model="newproject.tags">
+</tags-input>
+</div>
 <button class="btn btn-primary" data-ng-click="addProject()">Add </button>
 </form>
 </div>
