@@ -3,3 +3,5 @@ node_modules/
 .bin/
 hackapp.log
 npm-debug.log
+fig.yml
+docker-compose.yml
