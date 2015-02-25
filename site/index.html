@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
 	<script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
 
     <script type="text/javascript" src="/static/js/services.js"></script>
@@ -36,24 +36,10 @@
 
 </head>
 <body>
-	<div class="container">
-		<!-- <div class="navbar navbar-default"> 
-			<div class="container">
-				<div class="navbar-header"><a class="navbar-brand" href="/#/">CodeForNova@NSF</a>
-				</div>
-				<div class="collapse navbar-collapse" ng-controller="HeaderCtrl">
-					<ul class="nav navbar-nav">
-						<li ng-class="{active: isActive('/resources')}"><a href="#/resources/">Resources</a></li>
-						<li ng-class="{active: isActive('/projects')}"><a href="#/projects">Projects</a></li>
-						<li ng-class="{active: isActive('/datasets')}"><a href="#">Data Sets</a></li>
-					</ul>
-				</div>
-			</div>
-		</div> -->
-	</div>
+	<div class="container-fluid ng-scope" style="max-width:1200px;padding:0px 0px 0px 0px;">
 
-	<div ng-view >
-	</div>
-
+    <div class="outer">
+	<div ui-view="main"></div>
+	</div></div>
 </body>
 </html>
