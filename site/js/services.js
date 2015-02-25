@@ -2,12 +2,36 @@ hackServices = angular.module("hackServices",["angular-jwt","ngResource"])
        .factory("JWToken", function($window,$rootScope,jwtHelper){
         
         token = {}
-        token.get= function () {return $window.sessionStorage.token}
-        token.claims = function() {return jwtHelper.decodeToken(this.get())};
+        token.set = function (authToken) {$window.sessionStorage.token = authToken};
+        token.get = function () {return $window.sessionStorage.token};
+        token.deleteToken = function () {delete $window.sessionStorage.token};
+        token.claims = function() { return jwtHelper.decodeToken(this.get())};
         token.isExpired = function(){ return jwtHelper.isTokenExpired(this.get())};
 
         return token;
-      }).factory("Resource", function ($resource) {
+      }).factory("AuthService", function ($http, JWToken){
+          var   authService = {};
+          authService.login = function (credentials){
+                return $http.post('/authenticate', credentials)
+                .success(function (data, status, headers, config) {
+                 JWToken.set(data.token); 
+                })
+                .error(function(){
+                  // Throw away any existing token on login error
+                  JWToken.deleteToken();
+                })
+          }
+
+          authService.isAdmin = function(){
+            if (JWToken.claims().admin == "true" || !JWToken.isExpired()){
+              return true;
+            }
+            else{
+              return false;
+            }
+          }
+          return authService;
+        }).factory("Resource", function ($resource) {
 
            return $resource(
                "/api/resources/:_id"

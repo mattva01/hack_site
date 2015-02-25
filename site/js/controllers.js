@@ -34,21 +34,14 @@ var hackControllers = angular.module('hackControllers', ["hackServices"]).contro
 
 }).controller('EventCtrl', function ($scope,$http, Event){
   $scope.events = Event.query();
-}).controller('LoginCtrl', function ($scope, $http, $window, $location) {
+}).controller('LoginCtrl', function ($scope, $http, $location, AuthService) {
   $scope.message = '';
   $scope.submit = function () {
-    $http
-      .post('/authenticate', $scope.user)
+    AuthService.login($scope.user)
       .success(function (data, status, headers, config) {
-        console.log("YAY!")
-        $window.sessionStorage.token = data.token;
         $location.path("/");
       })
       .error(function (data, status, headers, config) {
-        // Erase the token if the user fails to log in
-        delete $window.sessionStorage.token;
-
-        // Handle login errors here
         $scope.message = 'Error: Invalid user or password';
       });
   };
