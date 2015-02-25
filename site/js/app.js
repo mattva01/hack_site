@@ -1,6 +1,7 @@
 var hackApp = angular.module('hackApp', [
   'ui.router',
   'ngTagsInput',
+  'ui.bootstrap',
   'hackControllers',
   'hackServices',
   'hackDirectives'
@@ -74,26 +75,29 @@ hackApp.config(['$stateProvider','$urlRouterProvider','$locationProvider','$urlM
       }
         
       }).
-      state('app.adminresources', {
-        url: '/admin/resources',
+      state('app.admin',{
+        abstract:true,
+        data: {
+          requireLogin: true // this property will apply to all children of 'app'
+        }
+      }).
+      state('app.admin.resources', {
+        url: '^/admin/resources',
         views: {
-            'content': {
+            'content@app': {
                 templateUrl: '/static/partials/resources_admin.html',
                 controller: 'ResourceCtrl'
         }
-      },
-        resolve: {loginRequired:loginRequired}
+      }
       }).
-       state('app.adminprojects', {
-        url: '/admin/projects',
+       state('app.admin.projects', {
+        url: '^/admin/projects',
         views: {
-            'content': {
+            'content@app': {
                 templateUrl: '/static/partials/projects_admin.html',
                 controller: 'ProjectCtrl',
         }
-      },
-        
-        resolve: {loginRequired:loginRequired}
+      }        
       }).
        state('app.projects', {
         url: '/projects',
@@ -106,15 +110,27 @@ hackApp.config(['$stateProvider','$urlRouterProvider','$locationProvider','$urlM
       })
   }]);
 
-var loginRequired = function($location,$q,JWToken){
-  var deferred = $q.defer();
-  if (!JWToken.get()|| !JWToken.claims().admin ||  JWToken.isExpired()){
-    deferred.reject()
-    $location.path('/login/');
-  }
-  else{
-      deferred.resolve();
-  }
-    return deferred.promise;
-  }
+app.run(function ($rootScope,loginModal,$state, AuthService) {
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams,fromState,fromParams) {
+    if (toState.data)
+      var requireLogin = toState.data.requireLogin;
+    if (requireLogin && !AuthService.isAdmin()) {
+      event.preventDefault();
+       loginModal()
+        .then(function () {
+          return $state.go(toState.name, toParams);
+        })
+        .catch(function (e) {
+          if (fromState.name != ""){
+            return $state.go(fromState.name,fromParams);
+          }
+          else{
+            return $state.go('homepage');
+          }
+        });
+    }
+  });
+
+});
 

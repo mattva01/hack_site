@@ -4,6 +4,7 @@ hackServices = angular.module("hackServices",["angular-jwt","ngResource"])
         token = {}
         token.set = function (authToken) {$window.sessionStorage.token = authToken};
         token.get = function () {return $window.sessionStorage.token};
+        token.exists = function () {return (this.get() != undefined)};
         token.deleteToken = function () {delete $window.sessionStorage.token};
         token.claims = function() { return jwtHelper.decodeToken(this.get())};
         token.isExpired = function(){ return jwtHelper.isTokenExpired(this.get())};
@@ -23,7 +24,7 @@ hackServices = angular.module("hackServices",["angular-jwt","ngResource"])
           }
 
           authService.isAdmin = function(){
-            if (JWToken.claims().admin == "true" || !JWToken.isExpired()){
+            if (JWToken.exists()  && JWToken.claims().admin && !JWToken.isExpired()){
               return true;
             }
             else{
@@ -58,7 +59,19 @@ hackServices = angular.module("hackServices",["angular-jwt","ngResource"])
             "http://api.meetup.com/2/events?status=upcoming&order=time&limited_events=False&group_urlname=Code-For-Nova&desc=false&offset=0&photo-host=public&format=json&page=20&fields=&sig_id=11545665&sig=40fe4c201e2189b4c7be742fd6e221fd30c8ba43",
              {callback:"JSON_CALLBACK"}, {"query": {method:"jsonp"}}
              );
-        });
+        }).service("loginModal", function ($modal){
+            //This provides the modal popup used for login.
+
+
+            return function() {
+              var instance = $modal.open({
+                templateUrl: '/static/partials/login.html',
+                controller: 'LoginCtrl',
+              })
+
+              return instance.result;
+            };
+          });
 
 
 

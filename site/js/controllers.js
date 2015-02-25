@@ -39,7 +39,7 @@ var hackControllers = angular.module('hackControllers', ["hackServices"]).contro
   $scope.submit = function () {
     AuthService.login($scope.user)
       .success(function (data, status, headers, config) {
-        $location.path("/");
+        $scope.$close();
       })
       .error(function (data, status, headers, config) {
         $scope.message = 'Error: Invalid user or password';
