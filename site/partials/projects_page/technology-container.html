@@ -1,16 +1,12 @@
     <div class="row zero-marg lt-rt-neg-marg technologies-container">
       <div class="col-sm-12 lt-rt-col-pad">
-        <div class="project-general-text ">
-          {{project.description}}
-        </div>
+        <div class="project-general-text " ng-attr-contenteditable="{{ editMode }}" ng-model="project.description"></div>
       </div>
       <div class="col-sm-12 lt-rt-col-pad" style="margin-top:16px;">
         <div class="row zero-marg">
           <div >
             <div class="col-xs-3 col-sm-4 zero-pad" ng-repeat="tag in project.tags">
-              <div class="technology-container">
-                {{tag}}
-              </div>      
+              <div class="technology-container" ng-attr-contenteditable="{{ editMode }}" ng-model="project.tags[$index]"></div>      
             </div>
           </div>          
         </div>        

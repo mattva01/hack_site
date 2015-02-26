@@ -1,7 +1,6 @@
 
 <div class="row zero-marg lt-rt-neg-marg">
-	<div class="col-sm-12 lt-rt-col-pad project-title">
-		{{project.name}}
+	<div class="col-sm-12 lt-rt-col-pad project-title" ng-model="project.name" ng-attr-contenteditable="{{ editMode }}">
 	</div>
 </div>
 
@@ -11,4 +10,10 @@
 
 <div class="col-xs-12 col-sm-6 zero-pad project-help">
 	<participate></participate>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-6">
+<button ng-show="editMode" data-ng-click="saveProject(project,project._id)" class="btn btn-primary"> Save </button>
+<button ng-show="editMode" data-ng-click="deleteProject(project._id,$index)" class="btn btn-danger"> Delete </button>
+</div>
 </div>

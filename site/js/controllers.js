@@ -12,12 +12,25 @@ var hackControllers = angular.module('hackControllers', ["hackServices"]).contro
   	$scope.resources.splice(item,1);
   };
 
-}).controller('ProjectCtrl', function ($scope, $http, Project) {
+}).controller('ProjectCtrl', function ($scope, $http, Project, AuthService) {
   $scope.projects = Project.query();
+  $scope.$watch( function () { return AuthService.isAdmin() }, function ( canEdit ) {
+  // handle it here. e.g.:
+  $scope.canEdit = canEdit;
+});
+  $scope.editMode = false;
   var seperateTags = function(tagObjarray){
     return tagObjarray.map(function(tag){
       return tag['text'];
     });
+  }
+
+  $scope.saveProject = function (project, id) {
+    project.$update({_id:id});
+  };
+
+  $scope.toggleEditMode = function (){
+    $scope.editMode = !$scope.editMode;
   }
   $scope.addProject = function () {
 

@@ -1,8 +1,9 @@
 <div class="projects-sm-plus">
- 
+      <button ng-show="canEdit" class="btn btn-primary" ng-click="toggleEditMode()">Edit</button>
       <div ng-repeat="project in projects">
         <project-showcase></project-showcase>
       </div>
+      <div ng-show="canEdit" class="btn btn-primary"> Add Project </button>
 </div>
 
 

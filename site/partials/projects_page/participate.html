@@ -7,19 +7,18 @@
                 </div>
               </div>
               <div class="row zero-marg">
-                <div class="col-xs-12 lt-rt-col-pad project-general-text">
-                 {{project.help_text}}
+                <div class="col-xs-12 lt-rt-col-pad project-general-text" ng-attr-contenteditable="{{ editMode }}" ng-model="project.help_text">
                 </div>                      
               </div>
             </div>
             <div class="col-xs-12 zero-pad wanna-help-container">
-              <div ng-show="{{project.github_url}}" class="wanna-help-link">
+              <div ng-show="project.github_url" class="wanna-help-link">
                   <a href="{{project.github_url}}">
                     <img src="/static/images/github02.png" height=70px; width=70px; />
                   </a>
               </div> 
-              <div ng-show="{{project.production_url}}"class="wanna-help-link">
-                  <a href="{{project.production_url}}">
+              <div ng-show="project.production_url"class="wanna-help-link">
+                  <a href="{{project.production_url}}" >
                     <img src="/static/images/project-play.png" height=70px; width=70px;>
                   </a>
               </div>

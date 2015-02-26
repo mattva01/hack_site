@@ -45,9 +45,9 @@ hackServices = angular.module("hackServices",["angular-jwt","ngResource"])
            return $resource(
                "/api/projects/:_id",{},
                 {
-                  "save": {method:"POST",headers: headers},
-                  "remove": {method:"DELETE", headers: headers}
-
+                  "save": {method:"POST", headers: headers},
+                  "remove": {method:"DELETE", headers: headers},
+                  "update": {method:"PUT", headers: headers}
                 }
           );
       }).factory("DataSet", function ($resource) {
