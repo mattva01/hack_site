@@ -211,6 +211,17 @@ app.get( '/api/projects/:id', function( request, response ) {
   });
 });
 
+app.put( '/api/projects/:id', function( request, response ) {
+  return ProjectModel.findByIdAndUpdate( request.params.id, request.body, function( err, project ) {
+    if( !err ) {
+      console.log("Project updated")
+      return response.send( project );
+    } else {
+      return response.send(500);
+    }
+  });
+});
+
 
 app.delete( '/api/projects/:id', requires_auth, function( request, response ) {
 
