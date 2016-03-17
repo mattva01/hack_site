@@ -1,7 +1,7 @@
 web:
    build: .
    volumes:
-    - site/:/usr/src/app/site
+    - ./site/:/usr/src/app/site
     - ./server.js:/usr/src/app/server.js
    links:
     - mongodb
