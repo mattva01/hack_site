@@ -42,9 +42,14 @@ curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose
  1. `cp fig.yml.ex fig.yml`
  2. Set the  environment variables in fig.yml according to your preferences (reference below)
 
-##### 5. Running the application
+##### 5. Running the application - for older Macs (2010 or earlier, regardless of OS) see Alt step 5 below
 1. `docker-compose build`
 2. `docker-compose up -d`
+
+##### Alternate Step 5 for older Macs: run the following commands instead for Step 5:
+1. sudo easy_install pip
+2. sudo pip install requests==2.4.3
+3. sudo pip install docker-compose
 
 Viola, the application should be running on port 8888. On Linux it will be running on 127.0.0.1, and on OSX you can find the IP by running `boot2docker ip`
 
